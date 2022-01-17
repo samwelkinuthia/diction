@@ -11,11 +11,19 @@ request(url, function(error, response, body) {
   data = unfluff(body)
   const text = data.text.replace(/[^a-zA-Z ]/g, "")
   const sorted = wordFreq(text)
+  for (const key in sorted) {
+    if (key === '') {
+      delete sorted[key]
+    }
+    if (sorted[key] > 10) {
+      console.log(`${key} : ${sorted[key]}`);
+    }
+  }
 
-  const objectArr = Object.entries(sorted).map((e) => (
-    { [e[0]]: e[1]}
-  ));
-  console.log(objectArr);
+  const objectArr = Object.entries(sorted).map((e) => ({
+    [e[0]]: e[1]
+  }));
+  // console.log(objectArr);
 });
 
 function wordFreq(string) {
@@ -24,8 +32,7 @@ function wordFreq(string) {
     .reduce((map, word) =>
       Object.assign(map, {
         [word]: (map[word]) ?
-          map[word] + 1 :
-          1,
+          map[word] + 1 : 1,
       }), {}
     );
 }
