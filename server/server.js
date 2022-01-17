@@ -11,8 +11,11 @@ request(url, function(error, response, body) {
   data = unfluff(body)
   const text = data.text.replace(/[^a-zA-Z ]/g, "")
   const sorted = wordFreq(text)
-  console.log(sorted);
 
+  const objectArr = Object.entries(sorted).map((e) => (
+    { [e[0]]: e[1]}
+  ));
+  console.log(objectArr);
 });
 
 function wordFreq(string) {
