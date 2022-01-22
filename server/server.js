@@ -31,15 +31,27 @@ app.post("/count", (req, res) => {
             //     console.log(`${key} : ${arranged[key]}`);
             // }
         }
-        res.send(arranged);
+        const objArr = [];
+        Object.keys(arranged).forEach(key => objArr.push({
+                word: key,
+                count: arranged[key]
+            }
+        ));
+        console.log(objArr)
+        // console.log(objArr);
+        res.send(objArr);
     });
 })
 
-// const myObj = { you: 100, me: 75, foo: 116, bar: 15 };
 
 // console.log((JSON.stringify(result)));
 
-
+function convertCollection(obj) {
+    let keys = Object.keys(obj);
+    return keys.map(function(key) {
+        return ({ id: key, ...obj[key] })
+    })
+}
 function sorter(obj) {
     return Object
        .entries(obj)
