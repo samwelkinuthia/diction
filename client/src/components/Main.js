@@ -1,5 +1,5 @@
-import React, {Component, useState} from "react";
-import {Form, Button, Container, Accordion} from "react-bootstrap";
+import React, {Component} from "react";
+import {Form, Button, Container, Accordion, Row, Col} from "react-bootstrap";
 // import {Collapse} from "react-collapse";
 import axios from "axios";
 // You can get access to the history object's properties and the closest <Route>'s match via the withRouter
@@ -16,6 +16,12 @@ class Main extends Component {
       url2: '',
       text_data: [],
       word_count: 0,
+      inA: [],
+      inB: [],
+      inBoth: [],
+      arr1: 0,
+      arr2: 0
+
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -70,10 +76,20 @@ class Main extends Component {
     console.log(this.state.text_data);
   }
   obtainText2 = async () => {
-    await axios.post('http://localhost:5000/count2', {url1: this.state.url1, url2: this.state.url2}, {}).then(
+    await axios.post('http://localhost:5000/count2', {
+      url1: this.state.url1,
+      url2: this.state.url2,
+    }, {}).then(
         response => {
-          console.log(response)
-          // this.setState({text_data: response.data.objs, word_count:response.data.dist});
+          // console.log(response)
+          this.setState({
+            inA: response.data.inA,
+            inB: response.data.inB,
+            inBoth: response.data.inBoth,
+            arr1: response.data.array1_len,
+            arr2:response.data.array2_len,
+          });
+          console.log(this.state)
         }
     )
     // console.log(this.state.text_data);
@@ -118,24 +134,45 @@ class Main extends Component {
             </Accordion>
           </Container>
           <Container>
-            <br/><br/>
-            <h3><i>Total words: </i> {this.state.word_count}</h3>
-            <table  className="table table-striped" style={{ marginTop: 20 }}>
-              <thead>
-              <tr>
-                <th>Word</th>
-                <th>Count</th>
-              </tr>
-              </thead>
-              <tbody>
-              {this.state.text_data.map(item=>(
-                  <tr key={item.id}>
-                    <td key={1}>{item.word}</td>
-                    <td key={2}>{item.count}</td>
+            <Row>
+              <Col>
+                <p><i>words: </i> {this.state.word_count}</p>
+                <table  className="table table-striped" style={{ marginTop: 20 }}>
+                  <thead>
+                  <tr>
+                    <th>Word</th>
+                    <th>Count</th>
                   </tr>
-              ))}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody>
+                  {this.state.text_data.map(item=>(
+                      <tr key={item.id}>
+                        <td key={1}>{item.word}</td>
+                        <td key={2}>{item.count}</td>
+                      </tr>
+                  ))}
+                  </tbody>
+                </table>
+              </Col>
+              <Col>
+                <table  className="table table-striped" style={{ marginTop: 20 }}>
+                  <thead>
+                  <tr>
+                    <th>Word</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {this.state.inA.map(item=>(
+                      <tr key={item.id}>
+                        <td key={1}>{item}</td>
+                      </tr>
+                  ))}
+                  </tbody>
+                </table>
+              </Col>
+              <Col>
+              </Col>
+            </Row>
           </Container>
         </div>
   );
