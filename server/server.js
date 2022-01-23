@@ -115,11 +115,13 @@ function find(arr1, arr2) {
     const onlyInBoth = intersection(arr1, arr2);
     const arr1_length = arr1.length;
     const arr2_length = arr2.length;
+    const arr3_length = onlyInBoth.length;
     return {
         inA: onlyInA,
         inB: onlyInB,
         inBoth: onlyInBoth,
         array1_len: arr1_length,
-        array2_len: arr2_length
+        array2_len: arr2_length,
+        array3_len: arr3_length
     }
 }
