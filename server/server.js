@@ -1,6 +1,7 @@
 const request = require('request');
 const unfluff = require('unfluff');
-const url = "https://en.wikipedia.org/wiki/Star_Wars";
+//testing url
+// const url = "https://en.wikipedia.org/wiki/Star_Wars";
 const express = require('express');
 const cors = require('cors');
 const rp = require('request-promise');
@@ -11,6 +12,7 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
+//initialize server
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
@@ -21,13 +23,16 @@ app.post("/count", (req, res) => {
     // let url2 = req.body.url2
     request(url, function(error, response, body) {
         let data = unfluff(body)
+        //remove special characters
         const text = data.text.replace(/[^a-zA-Z ]/g, "")
+        //split the text string into an array
         const wordArray = text.split(" ")
         const length = wordArray.length;
         const sorted = wordFreq(text)
-        console.log(sorted)
+        // console.log(sorted)
         const arranged = sorter(sorted)
-        console.log(arranged)
+        // console.log(arranged)
+        //delete blank entries and words with a count of less than 2
         for (const key in arranged) {
             if (key === '') {
                 delete arranged[key]
@@ -36,12 +41,15 @@ app.post("/count", (req, res) => {
                 delete arranged[key]
             }
         }
+        // new array to hold word and counts
         const objArr = [];
         Object.keys(arranged).forEach(key => objArr.push({
                 word: key,
                 count: arranged[key]
             }
         ));
+        console.log(objArr);
+        //api response to axios frontend
         res.send({objs:objArr, dist: length});
     });
 })
