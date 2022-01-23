@@ -20,7 +20,8 @@ class Main extends Component {
       inB: [],
       inBoth: [],
       arr1: 0,
-      arr2: 0
+      arr2: 0,
+      arr3: 0
 
     };
 
@@ -88,6 +89,7 @@ class Main extends Component {
             inBoth: response.data.inBoth,
             arr1: response.data.array1_len,
             arr2:response.data.array2_len,
+            arr3: response.data.array3_len,
           });
           console.log(this.state)
         }
@@ -133,11 +135,17 @@ class Main extends Component {
               </Accordion.Item>
             </Accordion>
           </Container>
+          <br/><br/><br/>
           <Container>
+            <p>URL: <a href={this.state.url}>{this.state.url}</a></p>
+            <p>URL 1: <a href={this.state.url1}>{this.state.url1}</a></p>
+            <p>URL 2: <a href={this.state.url2}>{this.state.url2}</a></p>
             <Row>
-              <Col>
-                <p><i>words: </i> {this.state.word_count}</p>
+              <Col style={{ border: "1px solid grey" }}>
                 <table  className="table table-striped" style={{ marginTop: 20 }}>
+                  <thead>
+                  <p>Word count: {this.state.word_count}</p>
+                  </thead>
                   <thead>
                   <tr>
                     <th>Word</th>
@@ -154,11 +162,11 @@ class Main extends Component {
                   </tbody>
                 </table>
               </Col>
-              <Col>
+              <Col style={{ border: "1px solid lightblue" }}>
                 <table  className="table table-striped" style={{ marginTop: 20 }}>
                   <thead>
                   <tr>
-                    <th>Word</th>
+                    <th>Only in URL 1: {this.state.arr1}</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -170,7 +178,37 @@ class Main extends Component {
                   </tbody>
                 </table>
               </Col>
-              <Col>
+              <Col style={{ border: "1px solid lightblue" }}>
+                <table  className="table table-striped" style={{ marginTop: 20 }}>
+                  <thead>
+                  <tr>
+                    <th>Only in URL 2 : {this.state.arr2}</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {this.state.inB.map(item=>(
+                      <tr key={item.id}>
+                        <td key={1}>{item}</td>
+                      </tr>
+                  ))}
+                  </tbody>
+                </table>
+              </Col>
+              <Col style={{ border: "1px solid lightblue" }}>
+                <table  className="table table-striped" style={{ marginTop: 20 }}>
+                  <thead>
+                  <tr>
+                    <th>Words present in both: {this.state.arr3}</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {this.state.inBoth.map(item=>(
+                      <tr key={item.id}>
+                        <td key={1}>{item}</td>
+                      </tr>
+                  ))}
+                  </tbody>
+                </table>
               </Col>
             </Row>
           </Container>
