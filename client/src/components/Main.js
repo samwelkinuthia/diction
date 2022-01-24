@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Form, Button, Container, Accordion, Row, Col} from "react-bootstrap";
+import {Form, Button, Container, Accordion, Row, Col, Alert} from "react-bootstrap";
 // import {Collapse} from "react-collapse";
 import axios from "axios";
 // You can get access to the history object's properties and the closest <Route>'s match via the withRouter
@@ -110,6 +110,8 @@ class Main extends Component {
               <Button variant="primary" type="submit">
                 Submit
               </Button>
+              <br/>
+                Note: It takes a few seconds update the table
             </Form>
           </Container>
           <br/>
@@ -130,6 +132,10 @@ class Main extends Component {
                     <Button variant="primary" type="submit">
                       Submit
                     </Button>
+                    <br/> <br/>
+                    <Alert variant={"warning"}>
+                      Note: Please click the submit button twice if the tables below do not update
+                    </Alert>
                   </Form>
                 </Accordion.Body>
               </Accordion.Item>
