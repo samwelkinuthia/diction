@@ -68,7 +68,7 @@ class Main extends Component {
   }
 
   obtainText = async () => {
-    await axios.post('http://localhost:5000/count', {url: this.state.url}, {}).then(
+    await axios.post('https://dictionary-ke:5000/count', {url: this.state.url}, {}).then(
         response => {
             console.log(response)
             this.setState({text_data: response.data.objs, word_count:response.data.dist});
@@ -77,7 +77,7 @@ class Main extends Component {
     console.log(this.state.text_data);
   }
   obtainText2 = async () => {
-    await axios.post('http://localhost:5000/count2', {
+    await axios.post('http://dictionary-ke:5000/count2', {
       url1: this.state.url1,
       url2: this.state.url2,
     }, {}).then(
