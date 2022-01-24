@@ -14,6 +14,7 @@ This web application provides a way to extract and tabulate text from webpages. 
   - A list of words unique to each URL.
   - A list of words present in both URLs.
 
+Hosted URL - [diction-ke.herokuapp.com](https://diction-ke.herokuapp.com/)
 #  Getting Started
 
 - Ensure Node Js is installed on your machine. If not, follow the instructions [here](https://nodejs.org/en/download/).
