@@ -28,7 +28,7 @@ This web application provides a way to extract and tabulate text from webpages. 
 
 This project was built using a Node backend and React frontend. Communication between the web client and server was accomplished using an express API with 2 endpoints `localhost:5000/count` and `localhost:5000/count2`. A POST request to the endpoints is sent when the submit button is pressed on the web app and the response rendered on a table.
 
-### Pre-Requisites
+## Pre-Requisites
 The following tools/libraries were used to develop this project.
 
 **Backend**
@@ -44,7 +44,7 @@ The following tools/libraries were used to develop this project.
 - [React-Bootstrap](https://github.com/facebook/react) - Handles general UI including grids, forms, and accordions.
 - [Axios](https://github.com/axios/axios) - Makes POST requests to the backend API endpoints enabling data transfer.
 
-###  File Structure
+##  File Structure
 
 The application is structured as follows:
 
@@ -84,7 +84,7 @@ The application is structured as follows:
     - `public` - holds static files -->
 
 
-###  How it works
+##  How it works
 
 ##### 1. HTTP requests
  The `request` and `request-promise` packages obtain html from the provided URLs. The request package was used for the base application as it takes in a single url. The `request-promise (rp)` package was used for the two urls comparison extension. This is because chaining using the `then` command is possible in the form of `rp(url1)..do something...then....rp(url2)... do another thing..`. The output from these HTTP requests is the HTML contained in the input urls. For example, `request('https://www.marxists.org/archive/brecht/works/1935/questions.htm' ...)` produces the sample output below
