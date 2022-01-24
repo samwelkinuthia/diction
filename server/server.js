@@ -1,5 +1,6 @@
 const request = require('request');
 const unfluff = require('unfluff');
+const path = require('path');
 //testing url
 // const url = "https://en.wikipedia.org/wiki/Star_Wars";
 const express = require('express');
@@ -11,7 +12,7 @@ const app = express();
 const port = 5000;
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static(path.join(__dirname, 'build')));
 //initialize server
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
