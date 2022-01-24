@@ -6,13 +6,13 @@ Extensions.
 Consider extending the application to work with a dictionary, or configurable word list, so one can e.g. find the non-English words on the page. Or perhaps provide a way to compare two (or more pages) in terms of words found in both and only in one or the other?
 
 
-##  :beginner: About
+#  :beginner: About
 
 This web application provides a way to extract and tabulate text from webpages. It provides a sorted list of the most occuring words on a webpage as well as their respective counts. e.g. The word "Star" in [https://en.wikipedia.org/wiki/Star_Wars](https://en.wikipedia.org/wiki/Star_Wars) appears **114** times. The app can also take two URLs and return the following:
   - A list of words unique to each URL.
   - A list of words present in both URLs.
 
-##  :electric_plug: Getting Started
+#  :electric_plug: Getting Started
 
 - Ensure Node Js is installed on your machine. If not, follow the instructions [here](https://nodejs.org/en/download/).
 - Ensure nodemon is installed by running `npm install -g nodemon`.
@@ -22,11 +22,11 @@ This web application provides a way to extract and tabulate text from webpages. 
 - Run `nodemon server.js` while in the server folder to start the backend server. A *server is running on port 5000* indicates that the server has been started correctly.
 - Run `npm start` in the client folder and [https://localhost:3000](https://localhost:3000) will be opened on your browser.
 
-##  :wrench: Development
+#  :wrench: Development
 
 This project was built using a Node backend and React frontend. Communication between the web client and server was accomplished using an express API with 2 endpoints `localhost:5000/count` and `localhost:5000/count2`. A POST request to the endpoints is sent when the submit button is pressed on the web app and the response rendered on a table.
 
-#### :notebook: Pre-Requisites
+### :notebook: Pre-Requisites
 The following tools/libraries were used to develop this project.
 
 **Backend**
@@ -42,7 +42,7 @@ The following tools/libraries were used to develop this project.
 - [React-Bootstrap](https://github.com/facebook/react) - Handles general UI including grids, forms, and accordions.
 - [Axios](https://github.com/axios/axios) - Makes POST requests to the backend API endpoints enabling data transfer.
 
-####  :file_folder: File Structure
+###  :file_folder: File Structure
 
 The application is structured as follows:
 
@@ -82,7 +82,7 @@ The application is structured as follows:
     - `public` - holds static files -->
 
 
-####  :hammer: How it works
+###  :hammer: How it works
 
 ##### 1. HTTP requests
  The `request` and `request-promise` packages obtain html from the provided URLs. The request package was used for the base application as it takes in a single url. The `request-promise (rp)` package was used for the two urls comparison extension. This is because chaining using the `then` command is possible in the form of `rp(url1)..do something...then....rp(url2)... do another thing..`. The output from these HTTP requests is the HTML contained in the input urls. For example, `request('https://www.marxists.org/archive/brecht/works/1935/questions.htm' ...)` produces the sample output below
@@ -171,11 +171,11 @@ The `intersection()` function outputs words found in both arrays through the `.f
 
 The resulting 3 arrays are converted into an object and exposed using  `res.send({object})`
 
-## :rocket: Deployment
-Write the deployment instruction here.
+<!-- # :rocket: Deployment
+Write the deployment instruction here. -->
 
 
-##  :fire: Contribution
+#  :fire: Contribution
 
 Contributions are always welcome. To contribute to this repo, you can:
 
@@ -185,17 +185,17 @@ Contributions are always welcome. To contribute to this repo, you can:
  2. **Create a pull request** <br>
  Pull requests will be appreciated and you can get started by picking up any open [issue](https://github.com/samwelkinuthia/diction/issues) and make a pull request.
 
-## Bugs
+# Bugs
 
 - Does not work with non english webpages.
 - Can produce errors when the URL provided contains extremely limited text since words with less than 2 occurences are not displayed.
 
-##  :camera: Gallery
+#  :camera: Gallery
 
 Resultant output on the web app:
 
 ![localhost_3000_(HD) (1)](https://user-images.githubusercontent.com/27720313/150702858-f76204dd-ab99-4545-97f7-b90022189714.png)
 
 
-##  :lock: License
+#  :lock: License
 MIT LICENSE
