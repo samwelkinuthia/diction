@@ -87,7 +87,7 @@ The application is structured as follows:
 ##  How it works
 
 ### 1. HTTP requests
- The `request` and `request-promise` packages obtain html from the provided URLs. The request package was used for the base application as it takes in a single url. The `request-promise (rp)` package was used for the two urls comparison extension. This is because chaining using the `then` command is possible in the form of `rp(url1)..do something...then....rp(url2)... do another thing..`. The output from these HTTP requests is the HTML contained in the input urls. For example, `request('https://www.marxists.org/archive/brecht/works/1935/questions.htm' ...)` produces the sample output below
+ The `request` and `request-promise` packages obtain HTML from the provided URLs. The request package was used for the base application as it takes in a single url. The `request-promise (rp)` package was used for the two urls comparison extension. This is because chaining using the `then` command is possible in the form of `rp(url1)..do something...then....rp(url2)... do another thing..`. The output from these HTTP requests is the HTML contained in the input urls. For example, `request('https://www.marxists.org/archive/brecht/works/1935/questions.htm' ...)` produces the sample output below
 
 ```
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
