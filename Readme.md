@@ -86,7 +86,7 @@ The application is structured as follows:
 
 ##  How it works
 
-##### 1. HTTP requests
+#### 1. HTTP requests
  The `request` and `request-promise` packages obtain html from the provided URLs. The request package was used for the base application as it takes in a single url. The `request-promise (rp)` package was used for the two urls comparison extension. This is because chaining using the `then` command is possible in the form of `rp(url1)..do something...then....rp(url2)... do another thing..`. The output from these HTTP requests is the HTML contained in the input urls. For example, `request('https://www.marxists.org/archive/brecht/works/1935/questions.htm' ...)` produces the sample output below
 
 ```
@@ -107,7 +107,7 @@ Bertolt Brecht 1935</p>
 ......etc
 
 ```
-##### 2. Obtaining text
+#### 2. Obtaining text
  The unfluff library is able to extract text from the HTML string into a standard json object. For the example in (1) above, unfluff produces the JSON below.
 
 ```
@@ -126,7 +126,7 @@ Bertolt Brecht 1935</p>
 ```
 Therefore, the text can easily be obtained by storing the JSON in a variable *e.g.* `data` and then accessing the text using `data.text`.
 
-##### 3. String manipulation
+#### 3. String manipulation
 At this point the text output is a really long string. Regex is utilised to remove special characters and the string is also split into a word array using
 `data.text.replace(/[^a-zA-Z ]/g, "").split(" ")`. The number of words is then be obtained by `array.length` method. The `wordFreq(string){...}` function returns an object containing words and their occurrence counts.
 
@@ -163,7 +163,7 @@ The empty keys are deleted and the object converted into an array of objects. Th
 ```
 This array, together with the total word count, is sent to the React app using the API response method `res.send({array, wordcount})`.
 
-##### 4. Array manipulation
+#### 4. Array manipulation
 
 The extensions utilize array manipulation. The text string obtained from `unfluff` is converted into a word array. The two URLs produce two arrays that are used for comparisons.
 
