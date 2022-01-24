@@ -9,7 +9,7 @@ const rp = require('request-promise');
 
 const app = express();
 // const routes = express.Router();
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
