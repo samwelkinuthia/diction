@@ -174,14 +174,21 @@ The `intersection()` function outputs words found in both arrays through the `.f
 
 The resulting 3 arrays are converted into an object and exposed using  `res.send({object})`
 
-<!-- # :rocket: Deployment
-Write the deployment instruction here. -->
+# Deployment
+
+To deploy the application to heroku:
+- Create a new project on the [Heroku dashboard](https://dashboard.heroku.com/apps)
+- On the deployment tab, click on connect to github and select the appropriate repository.
+  ![Screenshot from 2022-01-24 09-20-39](https://user-images.githubusercontent.com/27720313/150732254-9c9cb5d4-edcb-43e4-88c8-1a6493157913.png)
+- Enable automatic deploys on your active branch.
+- Finally deploy the active branch to obtain a heroku app URL.
+  ![Screenshot from 2022-01-24 09-20-51](https://user-images.githubusercontent.com/27720313/150732372-e60fe666-906a-488c-98f1-66f11aa28e62.png)
 
 # Bugs
 
 - Does not work with non english webpages.
 - Can produce errors when the URL provided contains extremely limited text since words with less than 2 occurences are not displayed.
-
+- For the two links extension, the submit button may need to be clicked twice in order to populate the table.
 
 #  Contribution
 
