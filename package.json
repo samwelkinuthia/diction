@@ -1,0 +1,30 @@
+{
+  "name": "diction",
+  "version": "1.0.0",
+  "description": "![alt text](https://img.shields.io/github/license/samwelkinuthia/diction) [![GitHub version](https://badge.fury.io/gh/samwelkinuthia%2Fdiction.svg)](https://badge.fury.io/gh/samwelkinuthia%2Fdiction)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "concurrently \"npm install\" \"cd client && npm install\" \"cd server && npm install\"",
+    "client": "cd client && npm start",
+    "server": "nodemon server/server.js",
+    "dev": "concurrently \"nodemon server/server.js\" \"cd client && npm run start\"",
+    "build": "cd client && npm build",
+    "start": "node server/server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samwelkinuthia/diction.git"
+  },
+  "author": "samwel kinuthia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samwelkinuthia/diction/issues"
+  },
+  "homepage": "https://github.com/samwelkinuthia/diction#readme",
+  "dependencies": {
+    "concurrency": "^0.1.4",
+    "nodemon": "^2.0.15"
+  }
+}
