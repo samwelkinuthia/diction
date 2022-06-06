@@ -21,8 +21,8 @@ class Main extends Component {
       inBoth: [],
       arr1: 0,
       arr2: 0,
-      arr3: 0
-
+      arr3: 0,
+      // checkboxChecked: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,6 +30,7 @@ class Main extends Component {
     this.handleChange3 = this.handleChange3.bind(this);
     this.handleSubmit2 = this.handleSubmit2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleCheckBox = this.handleCheckBox.bind(this);
   }
   // This will get the record based on the id from the database.
   componentDidMount() {}
@@ -67,8 +68,14 @@ class Main extends Component {
     this.obtainText2();
   }
 
+  // handleCheckBox() {
+  //   this.setState({
+  //     checkboxChecked: !this.state.checkboxChecked
+  //   })
+  // }
+
   obtainText = async () => {
-    await axios.post('http://localhost:5000/count', {url: this.state.url}, {}).then(
+    await axios.post('http://localhost:5000/count', {url: this.state.url, checked: this.state.checkboxChecked}, {}).then(
         response => {
             console.log(response)
             this.setState({text_data: response.data.objs, word_count:response.data.dist});
@@ -107,14 +114,22 @@ class Main extends Component {
                 <Form.Label>Enter URL</Form.Label>
                 <Form.Control type="url" placeholder="Enter URL" value={this.state.url} onChange={this.handleChange}/>
               </Form.Group>
+              {/*<Form.Check*/}
+              {/*    type="switch"*/}
+              {/*    id="custom-switch"*/}
+              {/*    checked={this.state.checkboxChecked}*/}
+              {/*    onChange={this.handleCheckBox}*/}
+              {/*    label="filter out articles (the, it, ...)"*/}
+              {/*/>*/}
+              <br/>
               <Button variant="primary" type="submit">
                 Submit
               </Button>
-              <br/>
+              <br/> <br/>
                 Note: It takes a few seconds update the table
             </Form>
           </Container>
-          <br/>
+          <br/> <br/>
           <Container>
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="1">
@@ -141,7 +156,7 @@ class Main extends Component {
               </Accordion.Item>
             </Accordion>
           </Container>
-          <br/><br/><br/>
+          <br/>
           <Container>
             <p>URL: <a href={this.state.url}>{this.state.url}</a></p>
             <p>URL 1: <a href={this.state.url1}>{this.state.url1}</a></p>
