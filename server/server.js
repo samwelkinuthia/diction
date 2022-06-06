@@ -1,5 +1,6 @@
 const request = require('request');
 const unfluff = require('unfluff');
+const { removeStopwords } = require('stopword');
 const path = require('path');
 //testing url
 // const url = "https://en.wikipedia.org/wiki/Star_Wars";
@@ -27,12 +28,13 @@ app.post("/count", (req, res) => {
         //remove special characters
         const text = data.text.replace(/[^a-zA-Z ]/g, "")
         //split the text string into an array
-        const wordArray = text.split(" ")
-        const length = wordArray.length;
-        const sorted = wordFreq(text)
-        // console.log(sorted)
+        let temp = removeStop(text)
+        const length = temp.split(" ").length;
+        const sorted = wordFreq(temp)
+
+        // REMOVE ARTICLES
         const arranged = sorter(sorted)
-        // console.log(arranged)
+
         //delete blank entries and words with a count of less than 2
         for (const key in arranged) {
             if (key === '') {
@@ -49,7 +51,7 @@ app.post("/count", (req, res) => {
                 count: arranged[key]
             }
         ));
-        console.log(objArr);
+        // console.log(objArr);
         //api response to axios frontend
         res.send({objs:objArr, dist: length});
     });
@@ -62,20 +64,24 @@ app.post("/count2", (req, res) => {
     //obtain the two URLs from client side
     let url1 = req.body.url1;
     let url2 = req.body.url2;
-    console.log(url1, url2);
+    // console.log(url1, url2);
     //chained request promises for each URL
     rp(url1).then((htmlString) => {
         let url1_scrapped = unfluff(htmlString);
-        let array1 = url1_scrapped.text.replace(/[^a-zA-Z ]/g, "").split(" ");
+        let text = url1_scrapped.text.replace(/[^a-zA-Z ]/g, "")
+        let cleaned_text = removeStop(text)
+        let array1 = cleaned_text.split(" ")
         temp.push(array1);
     }).then(
         rp(url2).then((htmlString) => {
             let url2_scrapped = unfluff(htmlString);
-            let array2 = url2_scrapped.text.replace(/[^a-zA-Z ]/g, "").split(" ");
+            let text = url2_scrapped.text.replace(/[^a-zA-Z ]/g, "")
+            let cleaned_text = removeStop(text);
+            let array2 = cleaned_text.split(" ");
             temp.push(array2);
             let result = find(temp[0], temp[1]);
             res.send(result);
-            console.log(result)
+            // console.log(result)
         })
     )
 })
@@ -133,4 +139,9 @@ function find(arr1, arr2) {
         array2_len: arr2_length,
         array3_len: arr3_length
     }
+}
+function removeStop(text) {//split the text string into an array
+    let x  = text.split(" ")
+    let y = removeStopwords(x);
+    return y.join(" ")
 }
